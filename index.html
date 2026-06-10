@@ -7,172 +7,206 @@
 <style>
   :root {
     --primary: #1f3a93;
-    --primary-light: #4d6bbf;
-    --bg: #f7f8fb;
+    --primary-700: #16276a;
+    --primary-300: #8499d6;
+    --accent: #3b5bdb;
+    --bg-top: #eef1fb;
+    --bg-bottom: #f6f7fc;
     --card: #ffffff;
-    --text: #1f2937;
+    --text: #1e2330;
     --muted: #6b7280;
-    --border: #e5e7eb;
+    --soft: #94a0b8;
+    --border: #e4e8f2;
     --green: #10b981;
-    --red: #ef4444;
+    --red: #e23b4e;
+    --ring: rgba(31, 58, 147, 0.16);
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0 6px 20px rgba(31, 58, 147, 0.08);
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "맑은 고딕", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-  .container { max-width: 760px; margin: 0 auto; padding: 24px 16px 80px; }
-  header { text-align: center; padding: 24px 0 16px; }
-  header h1 { margin: 0 0 8px; font-size: 24px; color: var(--primary); letter-spacing: -0.5px; line-height: 1.35; }
-  header .subtitle { color: var(--muted); font-size: 14px; }
+  html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "맑은 고딕", sans-serif; color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased;
+    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 320px) fixed, var(--bg-bottom); }
 
-  .intro { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); }
-  .intro p { margin: 6px 0; font-size: 14px; color: var(--text); }
-  .intro .meta { color: var(--muted); font-size: 13px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); }
+  /* 상단 진행 바 */
+  .progress-track { position: fixed; top: 0; left: 0; right: 0; height: 4px; background: rgba(31,58,147,0.08); z-index: 50; }
+  .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent), var(--primary)); transition: width .35s ease; border-radius: 0 4px 4px 0; }
 
-  .section { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--border); }
-  .section h2 { margin: 0 0 6px; font-size: 17px; color: var(--primary); padding-bottom: 10px; border-bottom: 2px solid var(--primary); display: inline-block; }
-  .section .sec-desc { font-size: 13.5px; color: var(--muted); margin: 12px 0 18px; }
+  .container { max-width: 720px; margin: 0 auto; padding: 28px 16px 96px; }
 
-  .q { margin-bottom: 22px; }
+  /* 헤더 히어로 */
+  .hero { position: relative; overflow: hidden; border-radius: 18px; padding: 16px 26px 34px; margin-bottom: 18px; color: #fff;
+    display: flex; flex-direction: column; align-items: center;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); box-shadow: var(--shadow-md); }
+  .hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 120% at 85% -10%, rgba(255,255,255,0.18), transparent 45%); pointer-events: none; }
+  .hero .org { align-self: flex-start; position: relative; font-size: 13px; font-weight: 600; letter-spacing: 0.2px; opacity: 0.9; }
+  .hero .hero-title { margin: 16px 0 0; font-size: 23px; letter-spacing: -0.4px; line-height: 1.45; font-weight: 800; position: relative; text-align: center; }
+  @media (max-width: 480px) { .hero { padding: 14px 18px 28px; } .hero .hero-title { font-size: 20px; } }
+
+  .intro { background: var(--card); border-radius: 14px; padding: 20px 22px; margin-bottom: 18px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+  .intro p { margin: 6px 0; font-size: 14px; }
+  .intro .meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: 13px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); }
+  .intro .meta .req { color: var(--red); font-weight: 700; }
+
+  .section { background: var(--card); border-radius: 14px; padding: 22px; margin-bottom: 16px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+  .sec-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .step-badge { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px; letter-spacing: 0.2px; }
+  .sec-head h2 { margin: 0; font-size: 18px; color: var(--text); font-weight: 700; }
+  .sec-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 20px; padding-left: 2px; }
+
+  .q { margin-bottom: 24px; padding-top: 4px; }
   .q:last-child { margin-bottom: 0; }
-  .q-label { display: block; font-weight: 600; margin-bottom: 10px; font-size: 15px; }
+  .q-label { display: block; font-weight: 700; margin-bottom: 12px; font-size: 15px; color: var(--text); }
+  .q-label .num { color: var(--primary); margin-right: 4px; }
   .q-label .req { color: var(--red); margin-left: 4px; }
-  .q-hint { font-size: 13px; color: var(--muted); margin: -6px 0 10px; }
+  .q-hint { display: inline-block; font-size: 12px; color: var(--accent); background: #eef2ff; border-radius: 6px; padding: 2px 8px; margin: -6px 0 12px; font-weight: 600; }
 
   input[type="text"], textarea {
-    width: 100%; padding: 11px 12px; font-size: 14px; border: 1px solid var(--border); border-radius: 8px; background: #fff; font-family: inherit; transition: border-color .15s;
-  }
-  input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(77, 107, 191, 0.15); }
-  textarea { min-height: 90px; resize: vertical; }
-  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    width: 100%; padding: 12px 14px; font-size: 14px; border: 1.5px solid var(--border); border-radius: 10px; background: #fcfcfe; font-family: inherit; transition: all .15s; }
+  input[type="text"]::placeholder, textarea::placeholder { color: var(--soft); }
+  input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px var(--ring); }
+  textarea { min-height: 100px; resize: vertical; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 540px) { .row2 { grid-template-columns: 1fr; } }
 
-  .options { display: grid; gap: 8px; }
+  .options { display: grid; gap: 9px; }
   .options.two-col { grid-template-columns: 1fr 1fr; }
   @media (max-width: 540px) { .options.two-col { grid-template-columns: 1fr; } }
-  .opt { display: flex; align-items: flex-start; gap: 10px; padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px; background: #fff; cursor: pointer; transition: all .15s; font-size: 14px; }
-  .opt:hover { border-color: var(--primary-light); background: #f8faff; }
-  .opt input { margin: 3px 0 0; cursor: pointer; flex-shrink: 0; }
-  .opt:has(input:checked) { border-color: var(--primary); background: #f0f4ff; }
+  .opt { display: flex; align-items: flex-start; gap: 11px; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: 10px; background: #fcfcfe; cursor: pointer; transition: all .14s; font-size: 14px; user-select: none; }
+  .opt:hover { border-color: var(--primary-300); background: #f5f7ff; }
+  .opt input { margin: 2px 0 0; cursor: pointer; flex-shrink: 0; width: 17px; height: 17px; accent-color: var(--primary); }
+  .opt:has(input:checked) { border-color: var(--primary); background: #eef2ff; box-shadow: inset 0 0 0 1px var(--primary); }
   .opt:has(input:checked) span { color: var(--primary); font-weight: 600; }
-  .opt input:disabled ~ span { color: var(--muted); }
+  .opt input:disabled ~ span { color: var(--soft); }
+  .opt:has(input:disabled) { opacity: 0.6; cursor: not-allowed; }
 
   /* 리커트 척도 */
-  .scale-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 12.5px; color: var(--muted); background: #f9fafb; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; }
-  .scale-legend span { white-space: nowrap; }
-  .scale-legend b { color: var(--primary); font-weight: 700; }
-  .item { padding: 14px 0; border-bottom: 1px solid #f0f1f4; }
-  .item:last-child { border-bottom: 0; }
-  .item-head { display: flex; gap: 8px; margin-bottom: 10px; }
-  .item-no { flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .scale-legend { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; font-size: 11px; color: var(--muted); background: #f5f7fc; border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 6px; text-align: center; }
+  .scale-legend div { display: flex; flex-direction: column; gap: 3px; }
+  .scale-legend b { color: var(--primary); font-size: 14px; }
+  .scale-note { font-size: 12px; color: var(--soft); margin: 0 0 18px; text-align: right; }
+
+  .item { padding: 16px 0; border-bottom: 1px solid #eef0f5; }
+  .item:last-child { border-bottom: 0; padding-bottom: 0; }
+  .item-head { display: flex; gap: 10px; margin-bottom: 12px; }
+  .item-no { flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; background: #eef2ff; color: var(--primary); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .item-cat { font-size: 11.5px; color: var(--accent); font-weight: 700; margin-bottom: 2px; letter-spacing: 0.2px; }
   .item-text { font-size: 14.5px; font-weight: 600; line-height: 1.5; }
-  .item-cat { font-size: 12px; color: var(--primary-light); font-weight: 700; margin-bottom: 2px; }
-  .likert { display: flex; gap: 6px; }
-  .likert .cell { flex: 1; }
+  .likert { display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
   .likert .cell input { position: absolute; opacity: 0; width: 0; height: 0; }
-  .likert .cell label { display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 8px; padding: 12px 2px; cursor: pointer; background: #fff; transition: all .12s; min-height: 48px; }
-  .likert .cell label .num { font-size: 16px; font-weight: 700; color: var(--muted); }
-  .likert .cell label:hover { border-color: var(--primary-light); background: #f8faff; }
-  .likert .cell input:checked + label { border-color: var(--primary); background: #f0f4ff; box-shadow: inset 0 0 0 1px var(--primary); }
-  .likert .cell input:checked + label .num { color: var(--primary); }
-  .likert-ends { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); margin-top: 6px; padding: 0 2px; }
+  .likert .cell label { display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--border); border-radius: 10px; padding: 13px 2px; cursor: pointer; background: #fcfcfe; transition: all .13s; }
+  .likert .cell label .num { font-size: 16px; font-weight: 800; color: var(--soft); transition: color .13s; }
+  .likert .cell label:hover { border-color: var(--primary-300); background: #f5f7ff; transform: translateY(-1px); }
+  .likert .cell input:checked + label { border-color: var(--primary); background: linear-gradient(135deg, var(--primary), var(--accent)); box-shadow: 0 4px 12px rgba(31,58,147,0.28); }
+  .likert .cell input:checked + label .num { color: #fff; }
+  .likert .cell input:focus-visible + label { box-shadow: 0 0 0 4px var(--ring); }
+  .likert-ends { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--soft); margin-top: 7px; padding: 0 2px; }
 
-  .submit-area { text-align: center; margin-top: 24px; }
-  .submit-btn { background: var(--primary); color: #fff; border: 0; padding: 14px 48px; font-size: 16px; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all .15s; box-shadow: 0 4px 12px rgba(31, 58, 147, 0.25); }
-  .submit-btn:hover:not(:disabled) { background: #182d75; transform: translateY(-1px); }
-  .submit-btn:disabled { background: #9ca3af; cursor: not-allowed; box-shadow: none; }
+  .submit-area { text-align: center; margin-top: 26px; }
+  .submit-btn { width: 100%; max-width: 320px; background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; border: 0; padding: 15px 40px; font-size: 16px; font-weight: 800; border-radius: 12px; cursor: pointer; transition: all .15s; box-shadow: 0 8px 20px rgba(31,58,147,0.28); letter-spacing: 0.3px; }
+  .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(31,58,147,0.34); }
+  .submit-btn:active:not(:disabled) { transform: translateY(0); }
+  .submit-btn:disabled { background: #aab2c5; cursor: not-allowed; box-shadow: none; }
 
-  .alert { padding: 12px 16px; border-radius: 8px; margin: 16px 0; font-size: 14px; }
-  .alert.error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
-  .alert.info { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+  .alert { padding: 13px 16px; border-radius: 10px; margin: 16px 0; font-size: 13.5px; }
+  .alert.error { background: #fef2f3; color: #a01827; border: 1px solid #f7c9ce; }
 
-  .done-screen { text-align: center; padding: 60px 20px; background: var(--card); border-radius: 12px; border: 1px solid var(--border); }
-  .done-screen .check { font-size: 56px; color: var(--green); margin-bottom: 12px; }
-  .done-screen h2 { color: var(--primary); margin: 0 0 12px; }
+  .done-screen { text-align: center; padding: 64px 24px; background: var(--card); border-radius: 18px; border: 1px solid var(--border); box-shadow: var(--shadow-md); }
+  .done-screen .check { width: 76px; height: 76px; margin: 0 auto 18px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 40px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(16,185,129,0.3); }
+  .done-screen h2 { color: var(--text); margin: 0 0 12px; font-size: 22px; }
   .done-screen p { color: var(--muted); }
   .hidden { display: none !important; }
-  .footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
 </style>
 </head>
 <body>
+<div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
 <div class="container">
 
-  <header>
-    <h1>[국가데이터인재개발원] LLM 기반 통계서비스 혁신(심화)<br>사전 설문</h1>
-    <div class="subtitle">국가데이터처 대상</div>
-  </header>
+  <div class="hero" id="heroBox">
+    <span class="org">국가데이터인재개발원</span>
+    <h1 class="hero-title">LLM 기반 통계서비스 혁신(심화) 사전 설문</h1>
+  </div>
 
   <div class="intro" id="introBox">
     <p>본 설문은 국가데이터인재개발원 LLM 기반 통계서비스 혁신 과정에 앞서, AI 활용 현황을 파악하기 위해 진행됩니다. 모든 응답은 <b>6.22~6.26 심화 과정</b>의 맞춤형 교육 설계에만 활용됩니다.</p>
     <p>아래 <b>1단계(사전 설문)</b>와 <b>2단계(사전 이해도 체크리스트)</b>를 모두 응답해 주세요.</p>
-    <div class="meta">⏱ 소요 시간: 약 5분 &nbsp;|&nbsp; <span class="req" style="color:var(--red)">*</span> 표시는 필수 항목</div>
+    <div class="meta"><span>⏱ 소요 시간 약 5분</span><span><span class="req">*</span> 표시는 필수 항목</span></div>
   </div>
 
   <form id="surveyForm" novalidate>
 
     <!-- 1단계: 사전 설문 -->
     <div class="section">
-      <h2>1단계. 사전 설문</h2>
-      <div class="sec-desc">현재 AI 활용 현황을 파악하기 위한 문항입니다.</div>
+      <div class="sec-head">
+        <span class="step-badge">Section 1</span>
+        <h2>사전 설문</h2>
+      </div>
+      <p class="sec-desc">현재 AI 활용 현황을 파악하기 위한 문항입니다.</p>
 
       <div class="q">
         <div class="row2">
           <div>
-            <label class="q-label" for="name">1. 성함<span class="req">*</span></label>
+            <label class="q-label" for="name"><span class="num">1.</span>성함<span class="req">*</span></label>
             <input type="text" id="name" placeholder="홍길동" autocomplete="name" />
           </div>
           <div>
-            <label class="q-label" for="affiliation">2. 소속<span class="req">*</span></label>
+            <label class="q-label" for="affiliation"><span class="num">2.</span>소속<span class="req">*</span></label>
             <input type="text" id="affiliation" placeholder="예: 국가데이터처 ○○과" autocomplete="off" />
           </div>
         </div>
       </div>
 
       <div class="q">
-        <label class="q-label">3. 현재 생성형 AI 도구를 업무에 얼마나 자주 활용하십니까?<span class="req">*</span></label>
+        <label class="q-label"><span class="num">3.</span>현재 생성형 AI 도구를 업무에 얼마나 자주 활용하십니까?<span class="req">*</span></label>
         <div class="options" id="aiFrequencyOptions"></div>
       </div>
 
       <div class="q">
-        <label class="q-label">4. 주로 사용하는 AI 도구를 모두 선택해 주세요.<span class="req">*</span></label>
+        <label class="q-label"><span class="num">4.</span>주로 사용하는 AI 도구를 모두 선택해 주세요.<span class="req">*</span></label>
         <div class="q-hint">복수선택 가능</div>
         <div class="options two-col" id="aiToolsOptions"></div>
-        <input type="text" id="aiToolsEtc" placeholder="기타 도구가 있다면 입력 (예: Perplexity, Midjourney 등)" style="margin-top: 10px;" />
+        <input type="text" id="aiToolsEtc" placeholder="기타 도구가 있다면 입력 (예: Midjourney 등)" style="margin-top: 10px;" />
       </div>
 
       <div class="q">
-        <label class="q-label">5. AI를 주로 어떤 목적으로 활용하십니까?<span class="req">*</span></label>
-        <div class="q-hint">복수선택 가능 · 통계 관련 업무 포함</div>
+        <label class="q-label"><span class="num">5.</span>AI를 주로 어떤 목적으로 활용하십니까?<span class="req">*</span></label>
+        <div class="q-hint">복수선택 가능</div>
         <div class="options two-col" id="aiUsesOptions"></div>
       </div>
 
       <div class="q">
-        <label class="q-label">6. 현재 AI 활용 수준을 스스로 평가해 주세요.<span class="req">*</span></label>
+        <label class="q-label"><span class="num">6.</span>현재 AI 활용 수준을 스스로 평가해 주세요.<span class="req">*</span></label>
         <div class="options" id="aiLevelOptions"></div>
       </div>
 
       <div class="q">
-        <label class="q-label">7. AI 활용 시 가장 불편하거나 어려운 점은 무엇입니까?<span class="req">*</span></label>
+        <label class="q-label"><span class="num">7.</span>AI 활용 시 가장 불편하거나 어려운 점은 무엇입니까?<span class="req">*</span></label>
         <div class="q-hint">최대 2개 선택</div>
         <div class="options" id="difficultiesOptions"></div>
       </div>
 
       <div class="q">
-        <label class="q-label" for="automationWish">8. 현재 AI를 활용해 효율화하고 싶은 업무는 무엇인지 자세히 작성해 주세요.<span class="req">*</span></label>
+        <label class="q-label" for="automationWish"><span class="num">8.</span>현재 AI를 활용해 효율화하고 싶은 업무는 무엇인지 자세히 작성해 주세요.<span class="req">*</span></label>
         <textarea id="automationWish" placeholder="자유롭게 작성해 주세요."></textarea>
       </div>
     </div>
 
     <!-- 2단계: 사전 이해도 체크리스트 -->
     <div class="section">
-      <h2>2단계. 사전 이해도 체크리스트</h2>
-      <div class="sec-desc">교육 시작 전 현재 본인의 수준과 가장 가까운 항목에 응답해 주세요. (사후 체크리스트는 교육 종료 후 별도 진행)</div>
+      <div class="sec-head">
+        <span class="step-badge">Section 2</span>
+        <h2>사전 이해도 체크리스트</h2>
+      </div>
+      <p class="sec-desc">교육 시작 전 현재 본인의 수준과 가장 가까운 항목에 응답해 주세요. (사후 체크리스트는 교육 종료 후 별도 진행)</p>
 
       <div class="scale-legend">
-        <span><b>1</b> 전혀 그렇지 않다</span>
-        <span><b>2</b> 그렇지 않다</span>
-        <span><b>3</b> 보통이다</span>
-        <span><b>4</b> 그렇다</span>
-        <span><b>5</b> 매우 그렇다</span>
+        <div><b>1</b>전혀<br>그렇지 않다</div>
+        <div><b>2</b>그렇지<br>않다</div>
+        <div><b>3</b>보통이다</div>
+        <div><b>4</b>그렇다</div>
+        <div><b>5</b>매우<br>그렇다</div>
       </div>
+      <p class="scale-note">각 문항에서 1~5 중 하나를 선택해 주세요.</p>
 
       <div id="checklist"></div>
     </div>
@@ -190,7 +224,6 @@
     <p id="doneMessage">응답해 주셔서 감사합니다.</p>
   </div>
 
-  <div class="footer">© IGM세계경영연구원 · 국가데이터인재개발원 위탁운영</div>
 </div>
 
 <script>
@@ -260,7 +293,6 @@ function escapeHTML(s) {
     return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];
   });
 }
-
 function renderRadio(containerId, name, options) {
   const c = document.getElementById(containerId);
   c.innerHTML = '';
@@ -271,7 +303,6 @@ function renderRadio(containerId, name, options) {
     c.appendChild(label);
   });
 }
-
 function renderCheckbox(containerId, name, options, max) {
   const c = document.getElementById(containerId);
   c.innerHTML = '';
@@ -293,7 +324,6 @@ function renderCheckbox(containerId, name, options, max) {
     });
   }
 }
-
 function renderChecklist() {
   const wrap = document.getElementById('checklist');
   wrap.innerHTML = '';
@@ -314,7 +344,7 @@ function renderChecklist() {
         '<div class="item-no">' + no + '</div>' +
         '<div>' +
           '<div class="item-cat">' + escapeHTML(item.cat) + '</div>' +
-          '<div class="item-text">' + escapeHTML(item.text) + '</div>' +
+          '<div class="item-text">' + escapeHTML(item.text) + '<span class="req">*</span></div>' +
         '</div>' +
       '</div>' +
       '<div class="likert">' + cells + '</div>' +
@@ -322,13 +352,30 @@ function renderChecklist() {
     wrap.appendChild(div);
   });
 }
-
 renderRadio('aiFrequencyOptions', 'aiFrequency', OPTIONS.aiFrequency);
 renderCheckbox('aiToolsOptions', 'aiTools', OPTIONS.aiTools);
 renderCheckbox('aiUsesOptions', 'aiUses', OPTIONS.aiUses);
 renderRadio('aiLevelOptions', 'aiLevel', OPTIONS.aiLevel);
 renderCheckbox('difficultiesOptions', 'difficulties', OPTIONS.difficulties, LIMITS.difficulties);
 renderChecklist();
+
+// ============ 진행률 ============
+function updateProgress() {
+  let total = 8 + ITEMS.length; // 1단계 8문항 + 체크리스트 12
+  let done = 0;
+  if (document.getElementById('name').value.trim()) done++;
+  if (document.getElementById('affiliation').value.trim()) done++;
+  if (getRadioValue('aiFrequency')) done++;
+  if (getCheckboxValues('aiTools').length) done++;
+  if (getCheckboxValues('aiUses').length) done++;
+  if (getRadioValue('aiLevel')) done++;
+  if (getCheckboxValues('difficulties').length) done++;
+  if (document.getElementById('automationWish').value.trim()) done++;
+  for (let i = 1; i <= ITEMS.length; i++) { if (getRadioValue('c' + i)) done++; }
+  document.getElementById('progressFill').style.width = Math.round(done / total * 100) + '%';
+}
+document.getElementById('surveyForm').addEventListener('input', updateProgress);
+document.getElementById('surveyForm').addEventListener('change', updateProgress);
 
 // ============ 제출 ============
 function getRadioValue(name) {
@@ -384,7 +431,6 @@ document.getElementById('surveyForm').addEventListener('submit', async function 
     showAlert('error', '⚠ 다음 항목을 확인해 주세요: ' + missing.join(' / '));
     return;
   }
-
   if (!API_URL || API_URL.indexOf('YOUR_APPS_SCRIPT') === 0) {
     showAlert('error', '⚠ 백엔드(Apps Script) URL이 설정되지 않았습니다. 셋업 가이드를 먼저 완료해 주세요.');
     return;
@@ -407,8 +453,10 @@ document.getElementById('surveyForm').addEventListener('submit', async function 
       btn.textContent = '제출하기';
       return;
     }
+    document.getElementById('progressFill').style.width = '100%';
     document.getElementById('surveyForm').classList.add('hidden');
     document.getElementById('introBox').classList.add('hidden');
+    document.getElementById('heroBox').classList.add('hidden');
     document.getElementById('doneScreen').classList.remove('hidden');
     document.getElementById('doneMessage').innerHTML =
       '<b>' + escapeHTML(payload.name) + '</b>님, 응답해 주셔서 감사합니다.<br>사후 체크리스트는 교육 종료 후 별도 안내드리겠습니다.';
