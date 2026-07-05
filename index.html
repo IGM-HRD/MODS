@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>국가통계 담당자를 위한 AI 기본기 다지기(입문) 사전 설문</title>
+<title>국가데이터 담당자를 위한 AI 기본기 다지기(입문) 사전 설문</title>
 <style>
   :root {
     --primary: #1f3a93;
@@ -124,11 +124,11 @@
 
   <div class="hero" id="heroBox">
     <span class="org">국가데이터인재개발원</span>
-    <h1 class="hero-title">국가통계 담당자를 위한<br>AI 기본기 다지기(입문) 사전 설문</h1>
+    <h1 class="hero-title">국가데이터 담당자를 위한<br>AI 기본기 다지기(입문) 사전 설문</h1>
   </div>
 
   <div class="intro" id="introBox">
-    <p>본 설문은 국가데이터인재개발원 「국가통계 담당자를 위한 AI 기본기 다지기(입문)」 과정에 앞서, AI 활용 현황과 사전 이해도를 파악하기 위해 진행됩니다. 모든 응답은 <b>7.14(화)~7.16(목) 입문 과정</b>의 맞춤형 교육 설계 및 교육효과 분석·통계 목적으로만 활용됩니다.</p>
+    <p>본 설문은 국가데이터인재개발원 「국가데이터 담당자를 위한 AI 기본기 다지기(입문)」 과정에 앞서, AI 활용 현황과 사전 이해도를 파악하기 위해 진행됩니다. 모든 응답은 <b>7.14(화)~7.16(목) 입문 과정</b>의 맞춤형 교육 설계 및 교육효과 분석·통계 목적으로만 활용됩니다.</p>
     <p>아래 <b>1단계(사전 설문)</b>와 <b>2단계(사전 이해도 체크리스트)</b>를 모두 응답해 주세요.</p>
     <div class="meta"><span>⏱ 소요 시간 약 5분</span><span><span class="req">*</span> 표시는 필수 항목</span></div>
   </div>
@@ -186,8 +186,9 @@
       </div>
 
       <div class="q">
-        <label class="q-label" for="automationWish"><span class="num">8.</span>현재 AI를 활용해 효율화하고 싶은 업무는 무엇인지 자세히 작성해 주세요.<span class="req">*</span></label>
-        <textarea id="automationWish" placeholder="자유롭게 작성해 주세요."></textarea>
+        <label class="q-label" for="automationWish"><span class="num">8.</span>현재 AI를 활용해 효율화하고 싶은 업무는 무엇인지 자세히 작성해 주세요.</label>
+        <div class="q-hint">선택 항목</div>
+        <textarea id="automationWish" placeholder="자유롭게 작성해 주세요. (선택)"></textarea>
       </div>
     </div>
 
@@ -363,7 +364,7 @@ renderChecklist();
 
 // ============ 진행률 ============
 function updateProgress() {
-  let total = 8 + ITEMS.length; // 1단계 8문항 + 체크리스트 12
+  let total = 7 + ITEMS.length; // 1단계 필수 7문항 + 체크리스트 12 (8번은 선택)
   let done = 0;
   if (document.getElementById('name').value.trim()) done++;
   if (document.getElementById('affiliation').value.trim()) done++;
@@ -372,7 +373,6 @@ function updateProgress() {
   if (getCheckboxValues('aiUses').length) done++;
   if (getRadioValue('aiLevel')) done++;
   if (getCheckboxValues('difficulties').length) done++;
-  if (document.getElementById('automationWish').value.trim()) done++;
   for (let i = 1; i <= ITEMS.length; i++) { if (getRadioValue('c' + i)) done++; }
   document.getElementById('progressFill').style.width = Math.round(done / total * 100) + '%';
 }
@@ -421,7 +421,6 @@ document.getElementById('surveyForm').addEventListener('submit', async function 
   if (payload.aiUses.length === 0) missing.push('5. AI 활용 목적');
   if (!payload.aiLevel) missing.push('6. AI 활용 수준');
   if (payload.difficulties.length === 0) missing.push('7. 어려운 점');
-  if (!payload.automationWish) missing.push('8. 효율화하고 싶은 업무');
 
   const unanswered = [];
   for (let i = 1; i <= ITEMS.length; i++) {
