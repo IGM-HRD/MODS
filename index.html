@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>국가데이터 담당자를 위한 AI 기본기 다지기(입문) 사전 설문</title>
+<title>국가데이터 담당자를 위한 AI 기본기 다지기(입문) 사후 이해도 체크리스트</title>
 <style>
   :root {
     --primary: #1f3a93;
@@ -58,26 +58,13 @@
   .q-label { display: block; font-weight: 700; margin-bottom: 12px; font-size: 15px; color: var(--text); }
   .q-label .num { color: var(--primary); margin-right: 4px; }
   .q-label .req { color: var(--red); margin-left: 4px; }
-  .q-hint { display: inline-block; font-size: 12px; color: var(--accent); background: #eef2ff; border-radius: 6px; padding: 2px 8px; margin: -6px 0 12px; font-weight: 600; }
 
   input[type="text"], textarea {
     width: 100%; padding: 12px 14px; font-size: 14px; border: 1.5px solid var(--border); border-radius: 10px; background: #fcfcfe; font-family: inherit; transition: all .15s; }
   input[type="text"]::placeholder, textarea::placeholder { color: var(--soft); }
   input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px var(--ring); }
-  textarea { min-height: 100px; resize: vertical; }
   .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 540px) { .row2 { grid-template-columns: 1fr; } }
-
-  .options { display: grid; gap: 9px; }
-  .options.two-col { grid-template-columns: 1fr 1fr; }
-  @media (max-width: 540px) { .options.two-col { grid-template-columns: 1fr; } }
-  .opt { display: flex; align-items: flex-start; gap: 11px; padding: 12px 15px; border: 1.5px solid var(--border); border-radius: 10px; background: #fcfcfe; cursor: pointer; transition: all .14s; font-size: 14px; user-select: none; }
-  .opt:hover { border-color: var(--primary-300); background: #f5f7ff; }
-  .opt input { margin: 2px 0 0; cursor: pointer; flex-shrink: 0; width: 17px; height: 17px; accent-color: var(--primary); }
-  .opt:has(input:checked) { border-color: var(--primary); background: #eef2ff; box-shadow: inset 0 0 0 1px var(--primary); }
-  .opt:has(input:checked) span { color: var(--primary); font-weight: 600; }
-  .opt input:disabled ~ span { color: var(--soft); }
-  .opt:has(input:disabled) { opacity: 0.6; cursor: not-allowed; }
 
   /* 리커트 척도 */
   .scale-legend { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; font-size: 11px; color: var(--muted); background: #f5f7fc; border: 1px solid var(--border); border-radius: 10px; padding: 10px; margin-bottom: 6px; text-align: center; }
@@ -124,29 +111,29 @@
 
   <div class="hero" id="heroBox">
     <span class="org">국가데이터인재개발원</span>
-    <h1 class="hero-title">국가데이터 담당자를 위한<br>AI 기본기 다지기(입문) 사전 설문</h1>
+    <h1 class="hero-title">국가데이터 담당자를 위한<br>AI 기본기 다지기(입문) 사후 이해도 체크리스트</h1>
   </div>
 
   <div class="intro" id="introBox">
-    <p>본 설문은 국가데이터인재개발원 「국가데이터 담당자를 위한 AI 기본기 다지기(입문)」 과정에 앞서, AI 활용 현황과 사전 이해도를 파악하기 위해 진행됩니다. 모든 응답은 <b>7.14(화)~7.16(목) 입문 과정</b>의 맞춤형 교육 설계 및 교육효과 분석·통계 목적으로만 활용됩니다.</p>
-    <p>아래 <b>1단계(사전 설문)</b>와 <b>2단계(사전 이해도 체크리스트)</b>를 모두 응답해 주세요.</p>
-    <div class="meta"><span>⏱ 소요 시간 약 5분</span><span><span class="req">*</span> 표시는 필수 항목</span></div>
+    <p>본 체크리스트는 국가데이터인재개발원 「국가데이터 담당자를 위한 AI 기본기 다지기(입문)」 과정을 <b>수료한 직후</b>, 각 항목에 대한 본인의 이해·수행 수준을 스스로 점검하기 위한 것입니다. 응답은 교육효과 분석·과정 개선 목적으로만 활용됩니다.</p>
+    <p>사전 이해도 체크리스트와 동일한 문항으로 구성되어 있으며, 교육 전·후 변화를 비교하는 데 사용됩니다.</p>
+    <div class="meta"><span>⏱ 소요 시간 약 3분</span><span><span class="req">*</span> 표시는 필수 항목</span></div>
   </div>
 
   <form id="surveyForm" novalidate>
 
-    <!-- 1단계: 사전 설문 -->
+    <!-- 응답자 정보 -->
     <div class="section">
       <div class="sec-head">
         <span class="step-badge">Section 1</span>
-        <h2>사전 설문</h2>
+        <h2>응답자 정보</h2>
       </div>
-      <p class="sec-desc">현재 AI 활용 현황을 파악하기 위한 문항입니다.</p>
+      <p class="sec-desc">사전 체크리스트와 동일하게 작성해 주세요.</p>
 
       <div class="q">
         <div class="row2">
           <div>
-            <label class="q-label" for="name"><span class="num">1.</span>성함<span class="req">*</span></label>
+            <label class="q-label" for="name"><span class="num">1.</span>성명<span class="req">*</span></label>
             <input type="text" id="name" placeholder="홍길동" autocomplete="name" />
           </div>
           <div>
@@ -155,50 +142,15 @@
           </div>
         </div>
       </div>
-
-      <div class="q">
-        <label class="q-label"><span class="num">3.</span>현재 생성형 AI 도구를 업무에 얼마나 자주 활용하십니까?<span class="req">*</span></label>
-        <div class="options" id="aiFrequencyOptions"></div>
-      </div>
-
-      <div class="q">
-        <label class="q-label"><span class="num">4.</span>주로 사용하는 AI 도구를 모두 선택해 주세요.<span class="req">*</span></label>
-        <div class="q-hint">복수선택 가능</div>
-        <div class="options two-col" id="aiToolsOptions"></div>
-        <input type="text" id="aiToolsEtc" placeholder="기타 도구가 있다면 입력 (예: Midjourney 등)" style="margin-top: 10px;" />
-      </div>
-
-      <div class="q">
-        <label class="q-label"><span class="num">5.</span>AI를 주로 어떤 목적으로 활용하십니까?<span class="req">*</span></label>
-        <div class="q-hint">복수선택 가능</div>
-        <div class="options two-col" id="aiUsesOptions"></div>
-      </div>
-
-      <div class="q">
-        <label class="q-label"><span class="num">6.</span>현재 AI 활용 수준을 스스로 평가해 주세요.<span class="req">*</span></label>
-        <div class="options" id="aiLevelOptions"></div>
-      </div>
-
-      <div class="q">
-        <label class="q-label"><span class="num">7.</span>AI 활용 시 가장 불편하거나 어려운 점은 무엇입니까?<span class="req">*</span></label>
-        <div class="q-hint">최대 2개 선택</div>
-        <div class="options" id="difficultiesOptions"></div>
-      </div>
-
-      <div class="q">
-        <label class="q-label" for="automationWish"><span class="num">8.</span>현재 AI를 활용해 효율화하고 싶은 업무는 무엇인지 자세히 작성해 주세요.</label>
-        <div class="q-hint">선택 항목</div>
-        <textarea id="automationWish" placeholder="자유롭게 작성해 주세요. (선택)"></textarea>
-      </div>
     </div>
 
-    <!-- 2단계: 사전 이해도 체크리스트 -->
+    <!-- 사후 이해도 체크리스트 -->
     <div class="section">
       <div class="sec-head">
         <span class="step-badge">Section 2</span>
-        <h2>사전 이해도 체크리스트</h2>
+        <h2>사후 이해도 체크리스트</h2>
       </div>
-      <p class="sec-desc">교육 시작 전 현재 본인의 수준과 가장 가까운 항목에 응답해 주세요. (사후 체크리스트는 교육 종료 후 별도 진행)</p>
+      <p class="sec-desc">교육 종료 후 현재 본인의 수준과 가장 가까운 항목에 응답해 주세요.</p>
 
       <div class="scale-legend">
         <div><b>1</b>전혀<br>그렇지 않다</div>
@@ -229,52 +181,12 @@
 
 <script>
 // ============ 설정 ============
-// 아래 API_URL을 본인의 Google Apps Script 웹앱 URL로 교체하세요. (셋업_가이드.md 참고)
-const API_URL = 'https://script.google.com/macros/s/AKfycbz4wNW42oUdlbJmwSObarX3DoI-oNHzMCuQ37A-L3sQkpnIOndGa2bgUqex5cnNmKE/exec'; // 새로 배포한 웹앱 URL로 교체 (셋업_가이드.md 참고)
+// 아래 API_URL을 본인의 Google Apps Script 웹앱 URL로 교체하세요.
+// ※ 사후 응답을 사전과 분리해 받으려면 사후용 시트에 저장하는 새 웹앱 URL로 교체하세요.
+//    해당 구글시트를 그대로 앱시트(AppSheet)에 연결해 데이터를 받으시면 됩니다.
+const API_URL = 'https://script.google.com/macros/s/AKfycbz4wNW42oUdlbJmwSObarX3DoI-oNHzMCuQ37A-L3sQkpnIOndGa2bgUqex5cnNmKE/exec'; // 사후용 웹앱 URL로 교체 권장
 
-// 1단계 선택지
-const OPTIONS = {
-  aiFrequency: [
-    '전혀 사용하지 않음',
-    '가끔 사용 (월 1~2회)',
-    '정기적으로 사용 (주 2~3회)',
-    '매일 사용 (하루 1~2회, 특정 과업 수행 시 활용)',
-    '하루에 여러 번 사용 (주요 업무 도구로 활용)'
-  ],
-  aiTools: ['ChatGPT','Claude','Gemini','NotebookLM','MS Copilot (Microsoft 365 내장)','Perplexity','기타','사용하지 않음'],
-  aiUses: [
-    '문서·보고서 초안 작성',
-    '정보 검색 및 리서치',
-    '바이브코딩(Python)',
-    '데이터 처리 및 검증',
-    '데이터 분석 및 요약',
-    '데이터 분석 결과 시각화',
-    '이메일·공문 작성',
-    '회의·보고 내용 요약',
-    '아이디어 발상 및 의사결정 지원',
-    '반복 업무 자동화 (매크로, 워크플로우)',
-    '아직 활용하지 않음'
-  ],
-  aiLevel: [
-    '입문: AI를 알고 있으나 실무에는 쓰지 않음',
-    '초급: 간단한 검색·요약 수준으로 사용 중',
-    '중급: 프롬프트를 작성해 원하는 결과물을 얻을 수 있음',
-    '고급: AI를 업무 프로세스에 체계적으로 통합해 활용 중'
-  ],
-  difficulties: [
-    '원하는 결과가 잘 나오지 않음 (프롬프트 작성 어려움)',
-    'AI 결과의 신뢰성·정확성이 불확실함',
-    '사내 보안·기밀 정보 유출 우려',
-    '실무에 어떻게 적용할지 방법을 모르겠음',
-    'AI 결과를 검토·수정하는 데 오히려 시간이 더 걸림',
-    '특별히 어려운 점 없음'
-  ]
-};
-const LIMITS = { difficulties: 2 };
-
-// 2단계 사전 이해도 체크리스트 12문항 (단일 역량)
-// - 5월 입문과정 체크리스트 문항 8개 유지(1,3,5,6,7,8,10,12번 문항)
-// - 이번 과정 교과목에 맞춰 4개 교체(언어모델, 통계 문서 작성, 국가통계 데이터, 업무 자동화)
+// 사후 이해도 체크리스트 12문항 (사전과 동일 문항)
 const ITEMS = [
   { cat: '생성형 AI 이해',      text: '생성형 AI의 개념을 이해하고 있다.' },
   { cat: '머신러닝 이해',       text: '머신러닝 개념을 이해하고 있다.' },
@@ -295,37 +207,6 @@ function escapeHTML(s) {
   return String(s).replace(/[&<>"']/g, function (m) {
     return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m];
   });
-}
-function renderRadio(containerId, name, options) {
-  const c = document.getElementById(containerId);
-  c.innerHTML = '';
-  options.forEach(function (opt) {
-    const label = document.createElement('label');
-    label.className = 'opt';
-    label.innerHTML = '<input type="radio" name="' + name + '" value="' + escapeHTML(opt) + '"><span>' + escapeHTML(opt) + '</span>';
-    c.appendChild(label);
-  });
-}
-function renderCheckbox(containerId, name, options, max) {
-  const c = document.getElementById(containerId);
-  c.innerHTML = '';
-  options.forEach(function (opt) {
-    const label = document.createElement('label');
-    label.className = 'opt';
-    label.innerHTML = '<input type="checkbox" name="' + name + '" value="' + escapeHTML(opt) + '"><span>' + escapeHTML(opt) + '</span>';
-    c.appendChild(label);
-  });
-  if (max) {
-    c.addEventListener('change', function () {
-      const checks = c.querySelectorAll('input[type=checkbox]');
-      const checked = c.querySelectorAll('input[type=checkbox]:checked');
-      if (checked.length >= max) {
-        checks.forEach(function (cb) { if (!cb.checked) cb.disabled = true; });
-      } else {
-        checks.forEach(function (cb) { cb.disabled = false; });
-      }
-    });
-  }
 }
 function renderChecklist() {
   const wrap = document.getElementById('checklist');
@@ -355,24 +236,14 @@ function renderChecklist() {
     wrap.appendChild(div);
   });
 }
-renderRadio('aiFrequencyOptions', 'aiFrequency', OPTIONS.aiFrequency);
-renderCheckbox('aiToolsOptions', 'aiTools', OPTIONS.aiTools);
-renderCheckbox('aiUsesOptions', 'aiUses', OPTIONS.aiUses);
-renderRadio('aiLevelOptions', 'aiLevel', OPTIONS.aiLevel);
-renderCheckbox('difficultiesOptions', 'difficulties', OPTIONS.difficulties, LIMITS.difficulties);
 renderChecklist();
 
 // ============ 진행률 ============
 function updateProgress() {
-  let total = 7 + ITEMS.length; // 1단계 필수 7문항 + 체크리스트 12 (8번은 선택)
+  let total = 2 + ITEMS.length; // 성명 + 소속 + 체크리스트 12
   let done = 0;
   if (document.getElementById('name').value.trim()) done++;
   if (document.getElementById('affiliation').value.trim()) done++;
-  if (getRadioValue('aiFrequency')) done++;
-  if (getCheckboxValues('aiTools').length) done++;
-  if (getCheckboxValues('aiUses').length) done++;
-  if (getRadioValue('aiLevel')) done++;
-  if (getCheckboxValues('difficulties').length) done++;
   for (let i = 1; i <= ITEMS.length; i++) { if (getRadioValue('c' + i)) done++; }
   document.getElementById('progressFill').style.width = Math.round(done / total * 100) + '%';
 }
@@ -384,9 +255,6 @@ function getRadioValue(name) {
   const el = document.querySelector('input[name="' + name + '"]:checked');
   return el ? el.value : '';
 }
-function getCheckboxValues(name) {
-  return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked')).map(function (el) { return el.value; });
-}
 function showAlert(type, msg) {
   const area = document.getElementById('alertArea');
   area.innerHTML = '<div class="alert ' + type + '">' + msg + '</div>';
@@ -397,16 +265,9 @@ document.getElementById('surveyForm').addEventListener('submit', async function 
   e.preventDefault();
 
   const payload = {
-    surveyType: '사전',
+    surveyType: '사후',
     name: document.getElementById('name').value.trim(),
-    affiliation: document.getElementById('affiliation').value.trim(),
-    aiFrequency: getRadioValue('aiFrequency'),
-    aiTools: getCheckboxValues('aiTools'),
-    aiToolsEtc: document.getElementById('aiToolsEtc').value.trim(),
-    aiUses: getCheckboxValues('aiUses'),
-    aiLevel: getRadioValue('aiLevel'),
-    difficulties: getCheckboxValues('difficulties'),
-    automationWish: document.getElementById('automationWish').value.trim()
+    affiliation: document.getElementById('affiliation').value.trim()
   };
   for (let i = 1; i <= ITEMS.length; i++) {
     payload['c' + i] = getRadioValue('c' + i);
@@ -414,13 +275,8 @@ document.getElementById('surveyForm').addEventListener('submit', async function 
 
   // 필수값 검증
   const missing = [];
-  if (!payload.name) missing.push('1. 성함');
+  if (!payload.name) missing.push('1. 성명');
   if (!payload.affiliation) missing.push('2. 소속');
-  if (!payload.aiFrequency) missing.push('3. AI 활용 빈도');
-  if (payload.aiTools.length === 0) missing.push('4. 사용 AI 도구');
-  if (payload.aiUses.length === 0) missing.push('5. AI 활용 목적');
-  if (!payload.aiLevel) missing.push('6. AI 활용 수준');
-  if (payload.difficulties.length === 0) missing.push('7. 어려운 점');
 
   const unanswered = [];
   for (let i = 1; i <= ITEMS.length; i++) {
@@ -460,7 +316,7 @@ document.getElementById('surveyForm').addEventListener('submit', async function 
     document.getElementById('heroBox').classList.add('hidden');
     document.getElementById('doneScreen').classList.remove('hidden');
     document.getElementById('doneMessage').innerHTML =
-      '<b>' + escapeHTML(payload.name) + '</b>님, 응답해 주셔서 감사합니다.<br>사후 설문은 교육 마지막 날(7.16) 수료식에서 별도 안내드리겠습니다.';
+      '<b>' + escapeHTML(payload.name) + '</b>님, 응답해 주셔서 감사합니다.<br>소중한 의견은 향후 교육과정 개선에 활용하겠습니다.';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } catch (err) {
     showAlert('error', '⚠ 네트워크 오류: ' + err.message);
